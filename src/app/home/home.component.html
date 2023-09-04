@@ -1,0 +1,41 @@
+
+<app-header></app-header>
+<app-carousel></app-carousel>
+<body>
+
+<div>
+    <p style="padding-left: 30px ; font-size: x-large; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; padding-top: 30px; text-align: center; color: rgb(255, 0, 0);"><b><i>Trending Now</i></b></p>
+</div>
+
+    <div class="container containerBack" style="padding: 50px; margin: 50px;">
+        <div class="row">
+            <div *ngFor="let movie of movies?.results" class="col-md-3" style="padding: 35px; ">
+                <a href="#" class="card text-center">
+                    <img src="{{ 'https://image.tmdb.org/t/p/original' + movie.poster_path }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">{{movie.title}}</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <br>
+ 
+
+
+  
+  
+
+    
+    <br>
+<br>
+<br>
+<br>
+
+</body>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2023 Your Company. All rights reserved.</p>
+    </div>
+</footer>

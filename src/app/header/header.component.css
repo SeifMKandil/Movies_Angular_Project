@@ -1,0 +1,13 @@
+/* styles.css */
+
+.bg-black {
+    background-color: black !important;
+}
+
+.text-white {
+    color: white !important;
+}
+
+.navbar{
+    border-bottom: 5px solid #555; 
+}

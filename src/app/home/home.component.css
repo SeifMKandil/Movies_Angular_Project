@@ -1,0 +1,35 @@
+  .custom-card {
+        width: 10rem;
+        padding-right: 0px;
+        padding-bottom: 00px;
+    }
+
+    .custom-card-body {
+        width: 10rem;
+    }
+
+
+.card {
+    width: 200px;
+    margin-right: 20px; /* Smaller space between cards */
+    background-color: red;
+}
+body {
+            background-image: url('https://i.pinimg.com/originals/b0/eb/41/b0eb41bdb91e75f326a0b1056fa088c6.jpg');
+    color: white; /* Set text color to white */
+}
+
+.card-img-top {
+    max-width: 100%; /* Set maximum image width to fit the card */
+    height: 50%; /* Automatically adjust height while maintaining aspect ratio */
+}
+.card-body {
+    background-color: aliceblue;
+}
+.footer {
+    background-color: #000000; /* Footer background color */
+    color: rgb(248, 3, 3); /* Text color in the footer */
+    padding: 20px 0; /* Vertical padding */
+    text-align: center;
+    border-top: 1px solid #555; 
+}

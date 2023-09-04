@@ -1,14 +1,13 @@
-import { MovieApiService } from './services/movie-api.service';
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-
+import { MovieApiService } from '../services/movie-api.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-catalogue',
+  templateUrl: './catalogue.component.html',
+  styleUrls: ['./catalogue.component.css']
 })
-export class AppComponent implements OnInit {
+export class CatalogueComponent implements OnInit {
+
   movies:any;
   constructor(private service:MovieApiService) {}
   title = 'Movies_Project';
@@ -18,4 +17,5 @@ export class AppComponent implements OnInit {
       this.movies = response;
     })
   }
+
 }

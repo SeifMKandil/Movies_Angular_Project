@@ -1,0 +1,48 @@
+
+
+.movie-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #000000;
+    padding: 10px;
+    border: 1px solid #ff0000;
+}
+
+.movie-image {
+    flex: 1;
+    max-width: 100px;
+    margin-right: 20px;
+}
+
+.movie-image img {
+    width: 100%;
+    height: auto;
+    /* Set the width and let the height adjust proportionally */
+}
+
+.movie-details {
+    flex: 1;
+}
+
+    /* Override default link styles */
+    .movie-container a {
+        text-decoration: none; /* Remove underline */
+        color: inherit; /* Inherit color from parent */
+    }
+
+
+    /* Add additional styling as needed */
+    body {
+        background-image: url('https://i.pinimg.com/originals/b0/eb/41/b0eb41bdb91e75f326a0b1056fa088c6.jpg'); /* Replace 'your-image-url.jpg' with the URL of your background image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        /* Add additional background styles as needed */
+    }
+
+    .gradient-text {
+        background: linear-gradient(to right, #FF0000, #8B0000, #000000);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
