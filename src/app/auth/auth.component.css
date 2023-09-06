@@ -9,11 +9,7 @@
     background: linear-gradient(to right, #FF0000, #8B0000, #000000);
 }
     
-    @media (min-width: 768px) {
-    .gradient-form {
-    height: 100vh !important;
-    }
-    }
+ 
     @media (min-width: 769px) {
     .gradient-custom-2 {
     border-top-right-radius: .3rem;
@@ -21,15 +17,35 @@
     }
     }
 
-    .body{
-        background-color: black;
 
-
+    
+    body {
+        background-image: url('https://i.pinimg.com/originals/b0/eb/41/b0eb41bdb91e75f326a0b1056fa088c6.jpg');
+        background-size: 100% 100%; /* Set the background image to cover the entire page */
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: white; /* Text color for better visibility on a dark background */
+        margin: 0; /* Remove default margin to fill the entire viewport */
+        padding: 0; /* Remove default padding */
+        overflow: hidden;
     }
+
+    .gradient-form {
+        background-color: rgba(0, 0, 0, 0.5); /* Background overlay to make text more readable */
+        padding: 50px 0;
+    }
+
 
     .gradient-text {
         background: linear-gradient(to right, #FF0000, #8B0000, #000000);
-        -webkit-background-clip: text; /* Apply the gradient as a text fill (for webkit browsers) */
-        color: transparent; /* Make the text color transparent so the gradient shows through */
+        -webkit-background-clip: text;
+        color: transparent;
     }
-    
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+input.ng-valid.ng-touched {
+    border: 1px solid rgb(30, 255, 0);
+}

@@ -1,7 +1,8 @@
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from './../services/authentication.service';
 // register.component.ts
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -9,7 +10,9 @@ import { Component } from '@angular/core';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
+  registerForm!: FormGroup;
+
   registerObj: any = {
     userName: '',
     email: '',
@@ -18,13 +21,26 @@ export class RegisterComponent {
 
   constructor(private authService: AuthenticationService) {}
 
-  onRegister() {
-    this.authService.addRegisteredUser(this.registerObj);
-    localStorage.setItem('registeredUsers', JSON.stringify(this.authService.getRegisteredUsers()));
-    this.registerObj = {
-      userName: '',
-      email: '',
-      password: ''
-    };
+
+  ngOnInit(): void {
+    this.registerForm = new FormGroup({
+      'userName' : new FormControl(null,[Validators.required, Validators.minLength(4)]),
+      'email' : new FormControl(null,[Validators.required, Validators.email]),
+      'password':  new FormControl(null,[Validators.required , Validators.minLength(6)])
+
+    })
   }
+
+  onRegister(){
+    this.registerObj = {
+      userName: this.registerForm.value.userName,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password
+  };
+
+  this.authService.addRegisteredUser(this.registerObj); // Add updated data
+  localStorage.setItem('registeredUsers', JSON.stringify(this.authService.getRegisteredUsers())); // Save updated data to local storage
+  }
+
+  
 }

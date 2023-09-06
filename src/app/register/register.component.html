@@ -2,38 +2,11 @@
 <html>
 
 <head>
-    <style>
-        body {
-            background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20190223/ourmid/pngtree-black-minimalist-atmospheric-wooden-background-backgroundwooden-backgroundtree-texture-image_77053.jpg');
-            background-size: 100% 100%; /* Set the background image to cover the entire page */
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: white; /* Text color for better visibility on a dark background */
-            margin: 0; /* Remove default margin to fill the entire viewport */
-            padding: 0; /* Remove default padding */
-        }
-
-        .gradient-form {
-            background-color: rgba(0, 0, 0, 0.5); /* Background overlay to make text more readable */
-            padding: 50px 0;
-        }
-
-        .container {
-            padding: 20px;
-        }
-
-        .gradient-text {
-            background: linear-gradient(to right, #FF0000, #8B0000, #000000);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        /* Rest of your styles */
-    </style>
+        
 </head>
 
 <body>
-
+    <app-header></app-header>
     <section class="h-100 gradient-form">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -51,46 +24,59 @@
 
                                     </div>
 
-                                    <form>
-
-
+                                    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example11">UserName</label>
                                             <input type="text" id="form2Example11" class="form-control"
-                                                placeholder="UserName" name="userName" [(ngModel)]="registerObj.userName">
-
+                                                placeholder="UserName" formControlName = "userName">
+                                                <span class="help-block" style="color: red;"
+                                                *ngIf=" !registerForm.get('userName')!.valid && registerForm.get('userName')!.touched">
+                                                UserName Cannot be Empty <br>
+                                                UserName Should contain min 4 characters
+                                                </span>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22">Email</label>
                                             <input type="email" id="form2Example22" class="form-control"
-                                                placeholder="Email" name="email" [(ngModel)]="registerObj.email" />
-
+                                                placeholder="Email" formControlName = "email">
+                                            
+                                                <span class="help-block" style="color: red;"
+                                                *ngIf=" !registerForm.get('email')!.valid && registerForm.get('email')!.touched">
+                                                Email Cannot be Empty <br>
+                                                Email should contain @ and .com !!
+                                                </span>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="form2Example22">Password</label>
                                             <input type="password" id="password" class="form-control"
-                                                placeholder="Confirm Password" name="password" [(ngModel)]="registerObj.password" />
+                                                placeholder="Confirm Password" formControlName = "password">
+
+                                                <span class="help-block" style="color: red;"
+                                                *ngIf=" !registerForm.get('password')!.valid && registerForm.get('password')!.touched">
+                                                Password Cannot be Empty <br>
+                                                Password Should contain min 6 characters
+                                                </span>
 
                                         </div>
 
                                         <div class="text-center pt-1 mb-5 pb-1">
                                             <button
                                                 class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                                type="button" (click)="onRegister()">Register</button>
+                                                type="submit" >Register</button>
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-center pb-4">
                                             <p class="mb-0 me-2">Already a user?</p>
-                                            <button type="button" class="btn btn-outline-danger">Login</button>
+                                            <button type="button" class="btn btn-outline-danger" routerLink="/auth">Login</button>
                                         </div>
 
                                     </form>
 
                                 </div>
                             </div>
-                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2 imgHidden">
                                 <img style="padding-left: 80px; height: 300px;"
                                     src="https://seeklogo.com/images/N/netflix-n-logo-0F1ED3EBEB-seeklogo.com.png"
                                     alt="Image">
