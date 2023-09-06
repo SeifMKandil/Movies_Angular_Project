@@ -14,15 +14,23 @@ import { RegisterComponent } from './register/register.component';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 import { RouterModule, Routes } from '@angular/router';
+import { SpinnerComponent } from './shared/spinner.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
 const appRoutes: Routes = [
   { path: '' , component: HomeComponent },
-  { path: 'catalogue' , component: CatalogueComponent },
+
   { path: 'auth' , component: AuthComponent },
+  
   { path: 'register' , component: RegisterComponent },
-  { path: 'movieDetails/:id',component:MovieDetailsComponent}
+  { path: 'movieDetails/:id',component:MovieDetailsComponent},
+  {
+    path: 'catalogue',
+    component: CatalogueComponent,
+    canActivate: [AuthGuard], 
+  },
 
 ] 
 
@@ -35,7 +43,8 @@ const appRoutes: Routes = [
     CatalogueComponent,
     AuthComponent,
     RegisterComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +53,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
