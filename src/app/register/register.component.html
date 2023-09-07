@@ -1,96 +1,93 @@
-<!DOCTYPE html>
-<html>
+<app-header></app-header>
+<section class="h-100 gradient-form">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
 
-<head>
-        
-</head>
-
-<body>
-    <app-header></app-header>
-    <section class="h-100 gradient-form">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-xl-10">
-                    <div class="card rounded-3 text-black">
-                        <div class="row g-0">
-                            <div class="col-lg-6">
-                                <div class="card-body p-md-5 mx-md-4">
-
-                                    <div class="text-center">
-                                        <img src="https://seeklogo.com/images/N/netflix-n-logo-0F1ED3EBEB-seeklogo.com.png"
-                                            style="width: 185px;" alt="logo">
-                                        <h4 class="mt-1 mb-5 pb-1"><span class="gradient-text">Register</span>
-                                        </h4>
-
-                                    </div>
-
-                                    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example11">UserName</label>
-                                            <input type="text" id="form2Example11" class="form-control"
-                                                placeholder="UserName" formControlName = "userName">
-                                                <span class="help-block" style="color: red;"
-                                                *ngIf=" !registerForm.get('userName')!.valid && registerForm.get('userName')!.touched">
-                                                UserName Cannot be Empty <br>
-                                                UserName Should contain min 4 characters
-                                                </span>
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example22">Email</label>
-                                            <input type="email" id="form2Example22" class="form-control"
-                                                placeholder="Email" formControlName = "email">
-                                            
-                                                <span class="help-block" style="color: red;"
-                                                *ngIf=" !registerForm.get('email')!.valid && registerForm.get('email')!.touched">
-                                                Email Cannot be Empty <br>
-                                                Email should contain @ and .com !!
-                                                </span>
-                                        </div>
-
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example22">Password</label>
-                                            <input type="password" id="password" class="form-control"
-                                                placeholder="Confirm Password" formControlName = "password">
-
-                                                <span class="help-block" style="color: red;"
-                                                *ngIf=" !registerForm.get('password')!.valid && registerForm.get('password')!.touched">
-                                                Password Cannot be Empty <br>
-                                                Password Should contain min 6 characters
-                                                </span>
-
-                                        </div>
-
-                                        <div class="text-center pt-1 mb-5 pb-1">
-                                            <button
-                                                class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-                                                type="submit" >Register</button>
-                                        </div>
-
-                                        <div class="d-flex align-items-center justify-content-center pb-4">
-                                            <p class="mb-0 me-2">Already a user?</p>
-                                            <button type="button" class="btn btn-outline-danger" routerLink="/auth">Login</button>
-                                        </div>
-
-                                    </form>
+                                <div class="text-center">
+                                    <img src="https://seeklogo.com/images/N/netflix-n-logo-0F1ED3EBEB-seeklogo.com.png"
+                                        style="width: 185px;" alt="logo">
+                                    <h4 class="mt-1 mb-5 pb-1"><span class="gradient-text">Register</span>
+                                    </h4>
 
                                 </div>
-                            </div>
-                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2 imgHidden">
-                                <img style="padding-left: 80px; height: 300px;"
-                                    src="https://seeklogo.com/images/N/netflix-n-logo-0F1ED3EBEB-seeklogo.com.png"
-                                    alt="Image">
-                                <!-- Replace this text content with an image -->
+                                
+                                <div style="text-align: center;" *ngIf="isLoading">
+                                    <app-spinner></app-spinner>
+                                </div>
+
+                                <form [formGroup]="registerForm" (ngSubmit)="onRegister()" *ngIf="!isLoading">
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example11">UserName</label>
+                                        <input type="text" id="form2Example11" class="form-control"
+                                            placeholder="UserName" formControlName="userName">
+                                        <span class="help-block" style="color: red;"
+                                            *ngIf="!registerForm.get('userName')!.valid && registerForm.get('userName')!.touched">
+                                            UserName Cannot be Empty <br>
+                                            UserName Should contain min 4 characters
+                                        </span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example22">Email</label>
+                                        <input type="email" id="form2Example22" class="form-control"
+                                            placeholder="Email" formControlName="email">
+                                        <span class="help-block" style="color: red;"
+                                            *ngIf="!registerForm.get('email')!.valid && registerForm.get('email')!.touched">
+                                            Email Cannot be Empty <br>
+                                            Email should contain @ and .com !!
+                                        </span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example22">Password</label>
+                                        <input type="password" id="password" class="form-control"
+                                            placeholder="Confirm Password" formControlName="password">
+                                        <span class="help-block" style="color: red;"
+                                            *ngIf="!registerForm.get('password')!.valid && registerForm.get('password')!.touched">
+                                            Password Cannot be Empty <br>
+                                            Password Should contain min 6 characters
+                                        </span>
+                                    </div>
+
+                                    <div class="text-center pt-1 mb-2 pb-1">
+                                        <button
+                                            class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                            type="submit" [disabled]="!registerForm.valid">Register</button>
+                                    </div>
+                                </form>
+
+                                <div class="text-center">
+                                    <button
+                                        class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                        type="button" (click)="onRegister('Firebase')">Register with Firebase</button>
+                                </div>
+
+                                <div class="alert alert-danger " *ngIf="error">
+                                    <p>{{error}}</p>
+
+                                </div>
+                                
+                                <div class="d-flex align-items-center justify-content-center pb-4">
+                                    <p class="mb-0 me-2">Already a user?</p>
+                                    <button type="button" class="btn btn-outline-danger" routerLink="/auth">Login</button>
+                                </div>
 
                             </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2 imgHidden">
+                            <img style="padding-left: 80px; height: 300px;"
+                                src="https://seeklogo.com/images/N/netflix-n-logo-0F1ED3EBEB-seeklogo.com.png"
+                                alt="Image">
+                            <!-- Replace this text content with an image -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-</body>
-
-</html>
-
+    </div>
+</section>

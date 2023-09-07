@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FirebaseAuthService } from '../services/firebase-auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -14,7 +16,7 @@ export class AuthComponent implements OnInit{
 
 
   loginObj: any = {
-    userName: '',
+    email: '',
     password: '',
     isLoggedin : false
 
@@ -24,12 +26,12 @@ export class AuthComponent implements OnInit{
 
   registeredUsers: any[] = [];
 
-  constructor(private authService: AuthenticationService) {
+  constructor(private authService: AuthenticationService , private firebaseAuth: FirebaseAuthService , private router:Router) {
     this.registeredUsers = authService.getRegisteredUsers();
   }
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      'userName' : new FormControl(null,[Validators.required, Validators.minLength(4)]),
+      'email' : new FormControl(null,[Validators.required, Validators.email]),
       'password':  new FormControl(null,[Validators.required , Validators.minLength(6)])
 
     })
@@ -40,19 +42,40 @@ export class AuthComponent implements OnInit{
     }
   }
 
-  onLogin(){
-    
-     const userExist = this.registeredUsers.find(m=> m.userName == this.loginForm.value.userName && m.password == this.loginForm.value.password);
-    if(userExist != undefined){
-      alert("You have logged in ");
-      this.loginObj.isLoggedin = true;
-      this.loginObj.userName = this.loginForm.value.userName;
-
+  onLogin(type: string | null = null): void {
+    if (type === 'Firebase'){
+      this.firebaseAuth.login(this.loginForm.value.email ,this.loginForm.value.password).subscribe(
+        responseData => {
+          console.log(this.loginForm.value.email)
+          console.log(responseData);
+          this.router.navigate(['/catalogue'])
+          
+          
+        }, error => {
+          console.error("Firebase login error:", error);
+          
+        }
+        
+      )
+      console.log("FireBase Login ");
     }else{
-      alert("Failed!!");
+      const userExist = this.registeredUsers.find(m=> m.email == this.loginForm.value.email && m.password == this.loginForm.value.password);
+      if(userExist != undefined){
+        alert("You have logged in ");
+        this.loginObj.isLoggedin = true;
+        this.loginObj.email = this.loginForm.value.email;
+        console.log("Local Login ");
+  
+      }else{
+        alert("Failed!!");
+      }
+
     }
+   
     
   
   }
+
+  
 
 }
